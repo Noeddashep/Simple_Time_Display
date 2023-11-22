@@ -4,18 +4,32 @@ import pytz
 
 
 # display current time
-def display_current_time():
+def display_current_time() -> str:
+    """
+    Displays the current date and time on the screen based on the system clock.
+
+    return: a string that includes the current date and time.
+    """
     current_time = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
     return current_time
 
 
 # time zone conversion
-def display_time_zone(time_zone):
+def display_time_zone(time_zone: str) -> str:
+    """
+    Gets a specific time zone and displays the current time and date in it.
+    param time_zone: a specific time zone
+    :return: a string containing the current time in that time zone
+    """
     timezone = datetime.now(pytz.timezone(time_zone))
     return timezone.strftime("%H:%M:%S")
 
 
-def display_all_time_zones():
+def display_all_time_zones() -> str:
+    """
+    A recap of all the time zones, in order to show them to the user and which he can use at a later time
+    return: a string that displays a table with all time zones
+    """
     time_zones = []
     for timezones in pytz.all_timezones:
         time_zones.append(timezones)
@@ -24,7 +38,11 @@ def display_all_time_zones():
     return tabulate(table, tablefmt="grid")
 
 
-def world_clock_display():
+def world_clock_display() -> str:
+    """
+    This function allow the user to add and display multiple clocks for different time zones simultaneously.
+    return: a string containing the current time in the time zones chosen by the user
+    """
     time_zone = ""
     add_time_zone = input("Do you want to add a time zone? Press y to add a time zone or press Enter to quit: ")
     while add_time_zone:
@@ -38,7 +56,8 @@ def world_clock_display():
                         "\nEnter one of the time zones in the table above and in the correct format(e.g., "
                         "Europe/Rome: ")
                 time_zone += f"Current time in {user_time_zone}: {display_time_zone(user_time_zone)}\n"
-                add_time_zone = input("Do you want to add a time zone? Press y to add a time zone or press Enter to quit: ")
+                add_time_zone = input(
+                    "Do you want to add a time zone? Press y to add a time zone or press Enter to quit: ")
             if add_time_zone == "":
                 break
 
@@ -50,14 +69,23 @@ def world_clock_display():
 
 
 # display date information
-def display_date_information():
+def display_date_information() -> tuple[str, str, str]:
+    """
+    Displays an additional date information such as day of the week, day of the year, and week number.
+    return: a string containing the day of the year, day of the week and the week number
+    """
     day_of_the_year = str(datetime.now().timetuple().tm_yday)
     day_of_the_week = str(datetime.now().strftime("%A"))
     week_number = str(datetime.now().isocalendar().week)
     return day_of_the_year, day_of_the_week, week_number
 
 
-def table():
+def table() -> str:
+    """
+    A table that contains the current time and other date information.
+    return: a string in the form of a table that include the current time, day of the week, day of the year and the week number
+    """
+
     data_info = display_date_information()
     data = [
         [display_current_time(), data_info[1], data_info[0], data_info[2]]

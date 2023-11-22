@@ -1,8 +1,15 @@
 import threading
 import time
+from typing import List
 
 
-def countdown(user_seconds, time_units):
+def countdown(user_seconds: int, time_units: List[str]) -> None:
+    """
+    Using a while loop allows to display the countdown on the screen based on the duration of time as seconds and the
+    time units obtained as arguments.
+    param user_seconds: the duration of time as seconds
+    param time_units: a list containing the time units as string
+    """
 
     global total_seconds, running
     total_seconds = user_seconds
@@ -45,19 +52,31 @@ def countdown(user_seconds, time_units):
         total_seconds -= 1
 
 
-def start(seconds, time_units):
+def start(seconds: int, time_units: List[str]) -> None:
+    """
+    Make the running variable as True allows to start the countdown as a separate running flow
+    param seconds: the duration of time as seconds
+    param time_units: a list containing the time units as string
+    """
     global running
     running = True
     threat_start = threading.Thread(target=countdown, args=(seconds, time_units,))
     threat_start.start()
 
 
-def stop():
+def stop() -> None:
+    """
+    Make the running variable as False allows to stop the countdown
+    """
     global running
     running = False
 
 
-def user_seconds():
+def user_seconds() -> int:
+    """
+    Asks the user the duration of time
+    return: the duration of time as integer
+    """
     total_seconds = input("Enter the time to include in your countdown in seconds:\n")
     while total_seconds:
         try:
@@ -74,7 +93,11 @@ def user_seconds():
     return total_seconds
 
 
-def user_interface():
+def user_interface() -> None:
+    """
+    the function allows to interact with the user by allowing him to start the countdown, stop it, restart it and
+    exit to the program
+    """
     global running, total_seconds
     running = False
     total_seconds = user_seconds()
@@ -120,10 +143,12 @@ def user_interface():
         if user_input.lower() == "q":
             break
 
-    return "You closed the program!"
 
-
-def time_units():
+def time_units() -> List[str]:
+    """
+    The function allows the user to add the time units he wants and which will be returned by the function as a list
+    return: a list containing the time units as string
+    """
     time_units = []
     user_time = input("Add one of the following time units: (days, hours, minutes, seconds\n"
                       "Time units: ")

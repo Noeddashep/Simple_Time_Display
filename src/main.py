@@ -3,11 +3,23 @@ from src.date_information import table, world_clock_display
 
 
 def main():
+    """
+    Main function, prints a table that contains the current time and other date information.
+    Calls several functions, allowing the user to use the countdown or compare different time zones
+    """
+
     print(table())
     user_input = input("What would you like to do?\n"
                        "Press 1 to select the time zone conversion\n"
                        "Press 2 to select the countdown\n"
                        "Press Enter to quit\n")
+    while user_input not in ("1", "2", ""):
+        print(f"{user_input} not found")
+        user_input = input("What would you like to do?\n"
+                           "Press 1 to select the time zone conversion\n"
+                           "Press 2 to select the countdown\n"
+                           "Press Enter to quit\n")
+
     while user_input:
 
         if user_input == "":
@@ -19,9 +31,16 @@ def main():
 
         print(table())
         user_input = input("What would you like to do?\n"
-                       "Press 1 to select the time zone conversion\n"
-                       "Press 2 to select the countdown\n"
-                       "Press Enter to quit\n")
+                           "Press 1 to select the time zone conversion\n"
+                           "Press 2 to select the countdown\n"
+                           "Press Enter to quit\n")
+        while user_input not in ("1", "2", ""):
+            print(f"{user_input} not found")
+            user_input = input("What would you like to do?\n"
+                               "Press 1 to select the time zone conversion\n"
+                               "Press 2 to select the countdown\n"
+                               "Press Enter to quit\n")
+
 
 if __name__ == '__main__':
     main()
