@@ -3,6 +3,11 @@ This app provides various information such as the current time, date, day of the
 
 Display the current date in a specific time zone or compare current times across different time zones simultaneously.
 Use a countdown by specifying the duration in seconds and selecting desired units of time (e.g., minutes and seconds, or a complete format including days, hours, minutes, and seconds). You can start, stop, or reset the countdown at your convenience.
+
+Before you get started, make sure to install the necessary dependencies that will make the project work properly. Use the following terminal command:
+```sh
+pip install -r src\requirements.txt
+```
 To run the program, ensure Python is installed on your system, clone the repository, and launch the application using the command:
 
 ```sh

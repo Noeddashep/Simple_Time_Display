@@ -8,38 +8,29 @@ def main():
     Calls several functions, allowing the user to use the countdown or compare different time zones
     """
 
-    print(table())
-    user_input = input("What would you like to do?\n"
-                       "Press 1 to select the time zone conversion\n"
-                       "Press 2 to select the countdown\n"
-                       "Press Enter to quit\n")
-    while user_input not in ("1", "2", ""):
-        print(f"{user_input} not found")
-        user_input = input("What would you like to do?\n"
+    print(table([]))
+
+    while True:
+
+        user_input = input("\nWhat would you like to do?\n"
                            "Press 1 to select the time zone conversion\n"
                            "Press 2 to select the countdown\n"
                            "Press Enter to quit\n")
 
-    while user_input:
+        if user_input not in ("1", "2", ""):
+            print(f"{user_input} not found")
 
         if user_input == "":
+            print("You closed the program!")
             break
+
         if user_input == "1":
             print(world_clock_display())
+
         if user_input == "2":
             print(user_interface())
 
-        print(table())
-        user_input = input("What would you like to do?\n"
-                           "Press 1 to select the time zone conversion\n"
-                           "Press 2 to select the countdown\n"
-                           "Press Enter to quit\n")
-        while user_input not in ("1", "2", ""):
-            print(f"{user_input} not found")
-            user_input = input("What would you like to do?\n"
-                               "Press 1 to select the time zone conversion\n"
-                               "Press 2 to select the countdown\n"
-                               "Press Enter to quit\n")
+        continue
 
 
 if __name__ == '__main__':
